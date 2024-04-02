@@ -22,7 +22,7 @@
         </nav>
     </header>    
     <div class="search-bar mt-8">
-        <form id="searchForm" class="flex justify-center">
+        <form id="searchForm" class="flex justify-center" action="display.php" method="POST">
             <input type="text" id="searchInput" name="searchInput" placeholder="Search for a flower..." class="px-4 py-2 border-2 border-gray-300 rounded-l-lg focus:outline-none focus:border-jordy-blue" />
             <button type="submit" class="px-6 py-2 border-2 border-l-0 border-jordy-blue bg-jordy-blue text-white rounded-r-lg">Search</button>
         </form>
@@ -32,9 +32,9 @@
         <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
     </div>
     
-    <script>
+    <!--<script>
       // Function to show search results
-      document.getElementById('searchForm').addEventListener('submit', function(event) {
+        /*document.getElementById('searchForm').addEventListener('submit', function(event) {
         event.preventDefault();
         var input = document.getElementById('searchInput').value;
         
@@ -44,8 +44,8 @@
         } else {
           document.getElementById('searchResults').classList.add('hidden');
         }
-      });
-    </script>
+      });*/
+    </script>-->
     
     <div class="flex justify-center mt-8 relative">
         <div id="gallery" class="flex overflow-hidden w-full">
