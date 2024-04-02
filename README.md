@@ -12,6 +12,7 @@ This repository is a fork of the repository https://github.com/requiem-wrld/data
 
 ## Flower Information Template
 
+```
 The displayed flower information on `display.php` follows the template below:
 Flower ID: 1
 Scientific Name: Rosa chinensis
@@ -22,6 +23,7 @@ Survivability out of water: 3
 Region: Asia
 Amount of Pollen: 0.75
 Price: 9.99
+```
 
 ## Usage
 
