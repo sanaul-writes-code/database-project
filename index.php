@@ -25,16 +25,17 @@ session_start();
             if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
                 // User is authenticated, hide login button and show logout button
                 $logout = 'logout.php';
-                echo '<button class="bg-jordy-blue px-4 py-2 rounded text-white" id="logoutBtn" onclick="location.href=' . $logout . '">Logout</button>';
+                echo "<button class='bg-jordy-blue px-4 py-2 rounded text-white' id='logoutBtn'><a href='logout.php'>Logout</a></button>";
 
             } else {
                 // User is not authenticated, show login button and hide logout button
                 $login = 'login.php';
-                echo '<button class="bg-jordy-blue px-4 py-2 rounded text-white" id="loginBtn" onclick="location.href=' . $login . '">Login</button>';
+                echo "<button class='bg-jordy-blue px-4 py-2 rounded text-white' id='loginBtn'>Login</button>";
             }
             ?>
             <!--<button class="bg-jordy-blue px-4 py-2 rounded text-white" id="loginBtn" onclick="location.href='login.php'">Login</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" id="logoutBtn" onclick="location.href='logout.php'">Logout</button>-->
+            <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='my-profile.php'">My Profile</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='cart.php'">Cart</button>
         </nav>
     </header>    
