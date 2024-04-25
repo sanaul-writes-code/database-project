@@ -107,7 +107,7 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 <p>
-    <a href="index.html">Search for another flower</a>
+    <a href="index.php">Search for another flower</a>
 </p>
 </body>
 </html>
