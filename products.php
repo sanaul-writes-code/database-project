@@ -49,6 +49,15 @@ session_start();
             padding: 10px;
             overflow: auto; /* Enable scrolling for overflow content */
         }
+        .add-to-cart-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -56,9 +65,7 @@ session_start();
 <div class="navbar">
     <a href="index.php">Home</a>
     <a href="products.php">Products</a>
-    <!--<a href="readers-choice.php">Readers' Choice</a>
-    <a href="index.php#about">About</a>
-    <a href="index.php#contact">Contact Us</a>-->
+    <a href="cart.php">Shopping Cart</a>
 </div>
 
 <!-- Second Navigation Bar -->
@@ -131,6 +138,7 @@ session_start();
                 echo "<p><strong>Region:</strong> " . $row["region"] . "</p>";
                 echo "<p><strong>Amount of pollen:</strong> " . $row["amount_of_pollen"] . "</p>";
                 echo "<p style='font-size: 22px'><strong>Price:</strong> \$" . $row["price"] . "</p>";
+                echo "<button class='add-to-cart-btn' onclick='addToCart(" . $row["flower_id"] . ")'>Add to Cart</button>";
                 echo "</div>"; // Close card-content
                 echo "</div>"; // Close card
             }
@@ -144,33 +152,18 @@ session_start();
 </div> <!-- Close main-content -->
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var loginBtn = document.getElementById('loginBtn');
-        var logoutBtn = document.getElementById('logoutBtn');
-
-        // Add event listener for login button click
-        /*loginBtn.addEventListener('click', function() {
-            // Redirect to login page
-            window.location.href = 'login.php';
-        });
-
-        // Add event listener for logout button click
-        logoutBtn.addEventListener('click', function() {
-            // Perform logout operation, e.g., redirect to logout script
-            window.location.href = 'logout.php';
-        });*/
-
-        // Check if user is logged in and toggle button visibility
-        /*?php
-        if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
-            echo 'loginBtn.style.display = "none";';
-            echo 'logoutBtn.style.display = "block";';
-        } else {
-            echo 'loginBtn.style.display = "block";';
-            echo 'logoutBtn.style.display = "none";';
-        }
-        ?>*/
-    });
+    function addToCart(productId) {
+        // Send AJAX request to addToCart.php with productId
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "addToCart.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert(xhr.responseText); // Display response from addToCart.php
+            }
+        };
+        xhr.send("productId=" + productId);
+    }
 </script>
 
 </body>
