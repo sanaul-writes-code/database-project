@@ -5,6 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <title>The Flora Shop</title>
+    <link href="alternate-style.css" rel="stylesheet" >
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .bg-rich-black { background-color: #171A21; }
@@ -12,6 +13,13 @@ session_start();
         .bg-air-superiority-blue { background-color: #7A93AC; }
         .bg-jordy-blue { background-color: #92BCEA; }
         .bg-periwinkle { background-color: #AFB3F7; }
+        body {
+            width: 100%;
+            border: none;
+        }
+        .dropdown .dropbtn {
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body class="bg-air-superiority-blue text-gray-700 font-sans">
@@ -20,7 +28,7 @@ session_start();
         <!-- Right Side Menu -->
         <nav class="flex space-x-4">
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="showSearchHistory()">Search History</button>
-            <?php
+            <!--?php
             // Check if user is authenticated
             if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
                 // User is authenticated, hide login button and show logout button
@@ -32,11 +40,36 @@ session_start();
                 $login = 'login.php';
                 echo "<button class='bg-jordy-blue px-4 py-2 rounded text-white' id='loginBtn'>Login</button>";
             }
-            ?>
+            ?>-->
             <!--<button class="bg-jordy-blue px-4 py-2 rounded text-white" id="loginBtn" onclick="location.href='login.php'">Login</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" id="logoutBtn" onclick="location.href='logout.php'">Logout</button>-->
+            <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='products.php'">Products</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='my-profile.php'">My Profile</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='cart.php'">Cart</button>
+            <?php
+            // Check if user is authenticated
+            if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
+                // User is authenticated, hide login button and show logout button
+                $logout = 'logout.php';
+                //echo "<button id='logoutBtn'><a href='logout.php'>Logout</a></button>";
+                echo "<div class='dropdown' id='logoutBtn'>
+                <button class='dropbtn'>{$_SESSION['uname']}
+                    <i class='fa fa-caret-down'></i>
+                </button>
+                <div class='dropdown-content'>
+                    <a href='my-profile.php'>My Profile</a>
+                    <a href='logout.php'>Logout</a>
+                </div>
+                </div>";
+            } else {
+                // User is not authenticated, show login button and hide logout button
+                $login = 'login.php';
+                echo "<div class='dropdown'>";
+                //echo "<a id='loginBtn' href='login.php'>Login</a>";
+                echo "<button class='bg-jordy-blue px-4 py-2 rounded text-white' id='loginBtn'>Login</button>";
+                echo "</div>";
+            }
+            ?>
         </nav>
     </header>    
     <div class="search-bar mt-8">
