@@ -3,7 +3,7 @@
 // Set session cookie parameters
 $sessionLifetime = 0; // expire when the browser is closed
 $sessionPath = '/';
-$sessionDomain = ''; // optional, specify your domain
+$sessionDomain = ''; // optional, specify the domain
 $sessionSecure = true; // if using HTTPS
 $sessionHttpOnly = true; // prevent JavaScript access to the session cookie
 
