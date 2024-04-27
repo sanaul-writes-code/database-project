@@ -66,14 +66,13 @@ session_start();
     <a href="index.php">Home</a>
     <a href="products.php">Products</a>
     <a href="cart.php">Shopping Cart</a>
+    <a href="faq.php">FAQ</a>
 </div>
 
 <!-- Second Navigation Bar -->
 <div class="navbar-second">
     <div class="nav-right">
         <a href="my-profile.php">My Profile</a>
-        <!--<a href="my-list.php">My List</a>-->
-        <!--<a href="login.php">Login</a>-->
         <a href="signup.php">Signup</a>
         <?php
         // Check if user is authenticated

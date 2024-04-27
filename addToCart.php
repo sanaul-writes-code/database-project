@@ -5,11 +5,34 @@ session_start();
 if (isset($_POST['productId']) && filter_var($_POST['productId'], FILTER_VALIDATE_INT)) {
     $productId = $_POST['productId'];
 
-    // Check if the product exists in the database (you may need to adjust this based on your database structure)
-    $productExists = true; // Placeholder value, you should query your database to check if the product exists
+    // Database connection variables
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "flowers";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Prepare and execute SQL query to check if the product exists
+    $stmt = mysqli_prepare($conn, "SELECT flower_id FROM Flower WHERE flower_id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $productId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+
+    // Check if the product exists in the database
+    $productExists = mysqli_stmt_num_rows($stmt) > 0;
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
 
     if ($productExists) {
-        // Add the product to the cart or update its quantity
+        // Product exists in the database, add it to the cart or update its quantity
 
         // Check if the product is already in the cart
         if (isset($_SESSION['cart'][$productId])) {

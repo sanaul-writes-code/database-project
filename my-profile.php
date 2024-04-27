@@ -32,6 +32,18 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+if (isset($_POST['delete_account'])) {
+    // Delete user account
+    $delete_sql = "DELETE FROM users WHERE username = '{$_SESSION['uname']}'";
+    if (mysqli_query($conn, $delete_sql)) {
+        // Account deleted successfully, redirect to logout page
+        header('Location: logout.php');
+        exit();
+    } else {
+        echo "Error deleting account: " . mysqli_error($conn);
+    }
+}
+
 $sql = "SELECT * FROM users WHERE username ='{$_SESSION["uname"]}'";
 $result = mysqli_query($conn, $sql);
 
@@ -47,6 +59,9 @@ if (mysqli_num_rows($result) > 0) {
         echo "<tr><th>Phone Number: </th><td>".$row["phone_number"]."</td></tr>";
     }
     echo "</table>";
+    echo "<form method='post'>";
+    echo "<button type='submit' name='delete_account'>Delete My Account</button>";
+    echo "</form>";
 } else {
     echo "0 results";
 }
@@ -81,34 +96,34 @@ mysqli_close($conn);
 </p>-->
 <button id="changeInfoBtn">Update My Info</button>
 <div id="updateForm" style="display: none;">
-<form method="post" action="update.php">
-    <label for="firstnameupdate">First Name:</label><br>
-    <input type="text" id="firstnameupdate" name="firstnameupdate" value="<?php echo $fname; ?>"><br><br>
+    <form method="post" action="update.php">
+        <label for="firstnameupdate">First Name:</label><br>
+        <input type="text" id="firstnameupdate" name="firstnameupdate" value="<?php echo $fname; ?>"><br><br>
 
-    <label for="lastnameupdate">Last Name:</label><br>
-    <input type="text" id="lastnameupdate" name="lastnameupdate" value="<?php echo $lname; ?>"><br><br>
+        <label for="lastnameupdate">Last Name:</label><br>
+        <input type="text" id="lastnameupdate" name="lastnameupdate" value="<?php echo $lname; ?>"><br><br>
 
-    <label for="emailupdate">Email:</label><br>
-    <input type="text" id="emailupdate" name="emailupdate" value="<?php echo $email; ?>"><br><br>
+        <label for="emailupdate">Email:</label><br>
+        <input type="text" id="emailupdate" name="emailupdate" value="<?php echo $email; ?>"><br><br>
 
-    <label for="addressupdate">Address:</label><br>
-    <input type="text" id="addressupdate" name="addressupdate" value="<?php echo $address; ?>"><br><br>
+        <label for="addressupdate">Address:</label><br>
+        <input type="text" id="addressupdate" name="addressupdate" value="<?php echo $address; ?>"><br><br>
 
-    <label for="phoneupdate">Phone:</label><br>
-    <input type="text" id="phoneupdate" name="phoneupdate" value="<?php echo $phone; ?>"><br><br>
+        <label for="phoneupdate">Phone:</label><br>
+        <input type="text" id="phoneupdate" name="phoneupdate" value="<?php echo $phone; ?>"><br><br>
 
-    <button type="submit">Update</button>
-</form>
+        <button type="submit">Update</button>
+    </form>
 
-<form id="change-password" method="post" action="update.php">
-    <label for="oldpwd">Old Password:</label><br>
-    <input type="password" id="oldpwd" name="oldpwd"><br><br>
-    <label for="newpwd">New Password:</label><br>
-    <input type="password" id="newpwd" name="newpwd"><br><br>
-    <label for="confnewpwd">Confirm New Password:</label><br>
-    <input type="password" id="confnewpwd" name="confnewpwd"><br><br>
-    <button type="submit">Update</button>
-</form>
+    <form id="change-password" method="post" action="update.php">
+        <label for="oldpwd">Old Password:</label><br>
+        <input type="password" id="oldpwd" name="oldpwd"><br><br>
+        <label for="newpwd">New Password:</label><br>
+        <input type="password" id="newpwd" name="newpwd"><br><br>
+        <label for="confnewpwd">Confirm New Password:</label><br>
+        <input type="password" id="confnewpwd" name="confnewpwd"><br><br>
+        <button type="submit">Update</button>
+    </form>
 </div>
 
 <br><a href="index.php">Go back to homepage</a>

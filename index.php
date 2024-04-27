@@ -46,6 +46,7 @@ session_start();
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='products.php'">Products</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='my-profile.php'">My Profile</button>
             <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='cart.php'">Cart</button>
+            <button class="bg-jordy-blue px-4 py-2 rounded text-white" onclick="location.href='faq.php'">FAQ</button>
             <?php
             // Check if user is authenticated
             if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {

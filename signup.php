@@ -80,6 +80,7 @@ mysqli_close($conn);
 <html>
 <head>
     <title>Signup</title>
+    <link href="alternate-style.css" rel="stylesheet" >
     <style>
         .required {
             color: red;
@@ -88,7 +89,46 @@ mysqli_close($conn);
     </style>
 </head>
 <body>
+<!-- Navigation bar -->
+<div class="navbar">
+    <a href="index.php">Home</a>
+    <a href="products.php">Products</a>
+    <a href="cart.php">Shopping Cart</a>
+    <a href="faq.php">FAQ</a>
+</div>
 
+<!-- Second Navigation Bar -->
+<div class="navbar-second">
+    <div class="nav-right">
+        <a href="my-profile.php">My Profile</a>
+        <a href="signup.php">Signup</a>
+        <?php
+        // Check if user is authenticated
+        if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
+            // User is authenticated, hide login button and show logout button
+            $logout = 'logout.php';
+            //echo "<button id='logoutBtn'><a href='logout.php'>Logout</a></button>";
+            echo "<div class='dropdown' id='logoutBtn'>
+                <button class='dropbtn'>{$_SESSION['uname']}
+                    <i class='fa fa-caret-down'></i>
+                </button>
+                <div class='dropdown-content'>
+                    <a href='my-profile.php'>My Profile</a>
+                    <a href='logout.php'>Logout</a>
+                </div>
+                </div>";
+        } else {
+            // User is not authenticated, show login button and hide logout button
+            $login = 'login.php';
+            echo "<div class='dropdown'>";
+            echo "<a id='loginBtn' href='login.php'>Login</a>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+</div>
+
+<div style="padding: 10px;">
 <h2>Signup</h2>
 
 <?php
@@ -132,6 +172,7 @@ echo '<p style="color: red;">' . htmlspecialchars($error_message) . '</p>';
         }
     });
 </script>
+</div>
 
 </body>
 </html>
